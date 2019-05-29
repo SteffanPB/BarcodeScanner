@@ -71,7 +71,9 @@ public final class CameraViewController: UIViewController {
   }
 
   private var frontCameraDevice: AVCaptureDevice? {
-    return AVCaptureDevice.devices(for: .video).first(where: { $0.position == .front })
+    return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
+                                                mediaType: .video,
+                                                position: .unspecified).devices.first(where: { $0.position == .front })
   }
 
   private var backCameraDevice: AVCaptureDevice? {
